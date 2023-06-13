@@ -1,6 +1,8 @@
 from manimlib import *
 import numpy 
 CharaWid = 0.266
+HeiRat = 0.589
+RuntimeLog = open("Log.txt", "w")
 
 def CharaBox(CharinBox: str, BoxScale: float=1) -> VGroup:
   ChrtoText = Text(CharinBox).scale(BoxScale)
@@ -14,6 +16,135 @@ def TextBox(StringinBox: str, BoxScale: float=1) -> VGroup:
     TextB += CharaBox(StringinBox[i], BoxScale)
   TextB.arrange(buff=0)
   return TextB
+
+def SAMNode(Strings: str, BoxScale: float=1, Hei: int=1) -> VGroup:
+  Len = len(Strings)
+  RuntimeLog.write("\nLen:")
+  RuntimeLog.write(str(Len))
+  if(Len == 0):
+    RuntimeLog.write("\nHere")
+    return Polygon([BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0], 
+                   [BoxScale * CharaWid * 0.5, 0.5 * HeiRat * BoxScale, 0],
+                   [-BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0])
+  MyNode = VGroup()
+  SufT = []
+  SufT.append(Text(Strings))
+  MyNode += SufT[0]
+  for i in range(0,Hei - 1):
+    Strings = Strings[1:]
+    SufT.append(Text(Strings))
+    SufT[i + 1].move_to(SufT[i])
+    SufT[i + 1].shift(UP * HeiRat * BoxScale)
+    SufT[i + 1].align_to(SufT[i],RIGHT)
+    MyNode += SufT[i + 1]
+  LeUp = [(2 * Hei - 2 - Len) * BoxScale * CharaWid * 0.5, (Hei - 0.5) * HeiRat * BoxScale, 0]
+  RiUp = [+Len * BoxScale * CharaWid * 0.5, (Hei - 0.5) * HeiRat * BoxScale, 0]
+  LeDown = [LeUp[0] - Hei * CharaWid, -0.5 * HeiRat * BoxScale, 0]
+  RiDown = [+Len * BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0]
+  MyNode += Polygon(LeDown, RiDown, RiUp, LeUp)
+  return MyNode
+
+class BANANA(Scene):
+  def construct(self):
+    GridH = []
+    GridV = []
+    Nodes = []
+    Dots = []
+
+    Nodes.append(SAMNode("", 1, 0)) # root
+    Nodes.append(SAMNode("b", 1, 2))
+    Nodes.append(SAMNode("ba", 1, 3))
+    Nodes.append(SAMNode("ban", 1, 4))
+    Nodes.append(SAMNode("bana", 1, 5))
+    Nodes.append(SAMNode("banan", 1, 6)) 
+    Nodes.append(SAMNode("banana", 1, 7))
+    
+    GridH.append(-6.5)  # add root
+    Nodes[0].move_to(RIGHT * GridH[0])
+    self.play(FadeIn(Nodes[0]))
+
+    GridH.append(-5.5)  # add B
+    Nodes[1].move_to(UP * 0.5 * HeiRat + RIGHT * GridH[1])
+    self.play(FadeIn(Nodes[1]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("b", 1, 1)
+    Tmp1.move_to(Nodes[1])
+    Tmp1.shift(UP * HeiRat * 0.5)
+    Tmp2.next_to(Tmp1, DOWN, buff=0)
+    Tmp1.shift(RIGHT * CharaWid * 0.5)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2))
+    self.remove(Nodes[1])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 1 + LEFT * (CharaWid * 0.5 + 1)))
+    self.remove(Tmp1)
+    Nodes[1] = Tmp2
+
+    GridH.append(-4.5)  # add A
+    Nodes[2].move_to(UP * 1 * HeiRat + RIGHT * GridH[2])
+    self.play(FadeIn(Nodes[2]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("ba", 1, 2)
+    Tmp1.move_to(Nodes[2])
+    Tmp1.shift(UP * HeiRat * 1)
+    Tmp2.next_to(Tmp1, DOWN, buff=0)
+    Tmp1.shift(RIGHT * CharaWid * 1)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2))
+    self.remove(Nodes[2])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 2)))
+    self.remove(Tmp1)
+    Nodes[2] = Tmp2
+
+    GridH.append(-3)  # add N
+    Nodes[3].move_to(UP * 1.5 * HeiRat + RIGHT * GridH[3])
+    self.play(FadeIn(Nodes[3]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("ban", 1, 3)
+    Tmp1.move_to(Nodes[3])
+    Tmp1.shift(UP * HeiRat * 1.5)
+    Tmp2.next_to(Tmp1, DOWN, buff=0)
+    Tmp1.shift(RIGHT * CharaWid * 1.5)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2))
+    self.remove(Nodes[3])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 3 + LEFT * (CharaWid * 1.5 + 3.5)))
+    self.remove(Tmp1)
+    Nodes[3] = Tmp2
+
+    GridH.append(-1.5)  # add A
+    Nodes[4].move_to(UP * 2 * HeiRat + RIGHT * GridH[4])
+    self.play(FadeIn(Nodes[4]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("bana", 1, 3)
+    Tmp3 = SAMNode("a", 1, 1)
+    Tmp1.move_to(Nodes[4])
+    Tmp1.shift(UP * HeiRat * 2)
+    Tmp3.next_to(Tmp1, DOWN, buff=0)
+    Tmp2.next_to(Tmp3, DOWN, buff=0)
+    Tmp3.shift(RIGHT * CharaWid * 1.5)
+    Tmp1.shift(RIGHT * CharaWid * 2)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2),FadeIn(Tmp3))
+    self.remove(Nodes[4])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 4 + LEFT * (CharaWid * 2 + 5)))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 3)))
+    self.remove(Tmp1)
+    self.remove(Tmp3)
+    Nodes[3] = Tmp2
+
+    self.wait(1)
+
+class Constru(Scene):
+  def construct(self):
+    # Node1 = SAMNode("helloworld", 1, 7)
+    Node2 = SAMNode("loworld", 1, 4).shift(UP * 3 * HeiRat + RIGHT * 1.5 * CharaWid)
+    Node3 = SAMNode("helloworld", 1, 3)
+    # self.play(FadeIn(Node1))
+    VGroup(Node2, Node3).shift(DOWN * 2)
+    self.play(FadeIn(Node2))
+    self.play(FadeIn(Node3))
+    Node2.generate_target()
+    Node2.target.shift(UP)
+    Node3.generate_target()
+    Node3.target.shift(DOWN)
+    self.play(MoveToTarget(Node2), MoveToTarget(Node3))
+    self.wait(1)
 
 class EC2(Scene):
   def construct(self):
@@ -143,3 +274,5 @@ class EC(Scene):
     self.wait(1)
 # manimgl SAM.py EC -o -c "BLACK"
 # manimgl SAM.py EC2 -o -c "BLACK"
+# manimgl SAM.py Constru -o -c "BLACK"
+# manimgl SAM.py BANANA -o -c "BLACK"

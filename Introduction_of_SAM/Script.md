@@ -20,9 +20,11 @@ SAM can be constructed in linear complexity, both time and space.
 
 We choose the method of addtion. For example, the SAM of the string "BANANA".
 
-Firstly, the SAM of an empty string is a single node "0", representing the EC of the EndPos {0}.
+Everytime we add a character at the end of the string, the new string will have a set of new substrings. Clearly, these substrings are suffixes, and can be arranged as a triangle.
 
-Then, we add the first character "B" into the string. Obviously, the EndPos of the hole new string is definetely new. Because there wasn't the position "1" before. So we creat a new node "1" for the new EC. As a result, the EndPos of the empty string becomes {0,1} instead of {0}. And because the new string is the old string with the addtional character in the end, so we add the Transition "B", from "0" to "1". What about Links? There's only one choice for "1", as {1} is the subset of {0,1}.
+We divide the triangle, and the top of the triangle can be devided as existing SAM nodes. So we just take care of the bottom.
+
+Because there wasn't the position "1" before. So we creat a new node "1" for the new EC. As a result, the EndPos of the empty string becomes {0,1} instead of {0}. And because the new string is the old string with the addtional character in the end, so we add the Transition "B", from "0" to "1". What about Links? There's only one choice for "1", as {1} is the subset of {0,1}.
 
 Now, add the character "A". Still, create node "2" for the string "BA", add the Transition "A" from "1" to "2". Noticing that string "A" belongs to EC 2, too, so we add the Transition "A" from "0" to "2". Now, EC of {2} contains two strings, "A" and "BA". Obviously, the Link of "2" is still "0".
 
