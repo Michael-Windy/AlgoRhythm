@@ -28,11 +28,11 @@ def SAMNode(Strings: str, BoxScale: float=1, Hei: int=1) -> VGroup:
                    [-BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0])
   MyNode = VGroup()
   SufT = []
-  SufT.append(Text(Strings))
+  SufT.append(Text(text=Strings,font_size=BoxScale*24))
   MyNode += SufT[0]
   for i in range(0,Hei - 1):
     Strings = Strings[1:]
-    SufT.append(Text(Strings))
+    SufT.append(Text(text=Strings,font_size=BoxScale*24))
     SufT[i + 1].move_to(SufT[i])
     SufT[i + 1].shift(UP * HeiRat * BoxScale)
     SufT[i + 1].align_to(SufT[i],RIGHT)
@@ -50,6 +50,7 @@ class BANANA(Scene):
     GridV = []
     Nodes = []
     Dots = []
+    Arrows = []
 
     Nodes.append(SAMNode("", 1, 0)) # root
     Nodes.append(SAMNode("b", 1, 2))
@@ -59,11 +60,23 @@ class BANANA(Scene):
     Nodes.append(SAMNode("banan", 1, 6)) 
     Nodes.append(SAMNode("banana", 1, 7))
     
-    GridH.append(-6.5)  # add root
+    for i in range(0, 7):
+      GridH.append(0)
+    
+    GridV.append(0.5)
+    GridV.append(-0.5)
+    GridV.append(1)
+    GridV.append(-0.7)
+    GridV.append(1.6)
+    GridV.append(-0.9)
+    GridV.append(1.9)
+    GridV.append(-1.1)
+
+    GridH[0] = -6.8  # add root
     Nodes[0].move_to(RIGHT * GridH[0])
     self.play(FadeIn(Nodes[0]))
 
-    GridH.append(-5.5)  # add B
+    GridH[1] = GridH[0] + 0.5  # add B
     Nodes[1].move_to(UP * 0.5 * HeiRat + RIGHT * GridH[1])
     self.play(FadeIn(Nodes[1]))
     Tmp1 = SAMNode("", 1, 0)
@@ -74,11 +87,19 @@ class BANANA(Scene):
     Tmp1.shift(RIGHT * CharaWid * 0.5)
     self.play(FadeIn(Tmp1),FadeIn(Tmp2))
     self.remove(Nodes[1])
-    self.play(Tmp1.animate.shift(DOWN * HeiRat * 1 + LEFT * (CharaWid * 0.5 + 1)))
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 1 + LEFT * (CharaWid * 0.5 + 0.5)))
     self.remove(Tmp1)
     Nodes[1] = Tmp2
+    Dots.append(Dot(point=[GridH[0], GridV[1], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[1], GridV[1], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[0], end=Dots[1], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[0]), FadeIn(Dots[0]), FadeIn(Dots[1]))
+    Dots.append(Dot(point=[GridH[0], GridV[0], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[1], GridV[0], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[3], end=Dots[2], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[1]), FadeIn(Dots[3]), FadeIn(Dots[2]))
 
-    GridH.append(-4.5)  # add A
+    GridH[2] = GridH[1] + 0.8  # add A
     Nodes[2].move_to(UP * 1 * HeiRat + RIGHT * GridH[2])
     self.play(FadeIn(Nodes[2]))
     Tmp1 = SAMNode("", 1, 0)
@@ -89,11 +110,22 @@ class BANANA(Scene):
     Tmp1.shift(RIGHT * CharaWid * 1)
     self.play(FadeIn(Tmp1),FadeIn(Tmp2))
     self.remove(Nodes[2])
-    self.play(Tmp1.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 2)))
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 1.3)))
     self.remove(Tmp1)
     Nodes[2] = Tmp2
+    Dots.append(Dot(point=[GridH[0], GridV[3], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[2], GridV[3], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[4], end=Dots[5], buff=0.05, stroke_width=3))
+    Dots.append(Dot(point=[GridH[1], GridV[5], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[2], GridV[5], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[6], end=Dots[7], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[2]),FadeIn(Arrows[3]), FadeIn(Dots[4]), FadeIn(Dots[5]), FadeIn(Dots[6]), FadeIn(Dots[7]))
+    Dots.append(Dot(point=[GridH[0], GridV[2], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[2], GridV[2], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[9], end=Dots[8], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[4]), FadeIn(Dots[8]), FadeIn(Dots[9]))
 
-    GridH.append(-3)  # add N
+    GridH[3] = GridH[2] + 1.1  # add N
     Nodes[3].move_to(UP * 1.5 * HeiRat + RIGHT * GridH[3])
     self.play(FadeIn(Nodes[3]))
     Tmp1 = SAMNode("", 1, 0)
@@ -104,11 +136,11 @@ class BANANA(Scene):
     Tmp1.shift(RIGHT * CharaWid * 1.5)
     self.play(FadeIn(Tmp1),FadeIn(Tmp2))
     self.remove(Nodes[3])
-    self.play(Tmp1.animate.shift(DOWN * HeiRat * 3 + LEFT * (CharaWid * 1.5 + 3.5)))
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 3 + LEFT * (CharaWid * 1.5 + 2.4)))
     self.remove(Tmp1)
     Nodes[3] = Tmp2
 
-    GridH.append(-1.5)  # add A
+    GridH[4] = GridH[3] + 1.4  # add A
     Nodes[4].move_to(UP * 2 * HeiRat + RIGHT * GridH[4])
     self.play(FadeIn(Nodes[4]))
     Tmp1 = SAMNode("", 1, 0)
@@ -122,11 +154,92 @@ class BANANA(Scene):
     Tmp1.shift(RIGHT * CharaWid * 2)
     self.play(FadeIn(Tmp1),FadeIn(Tmp2),FadeIn(Tmp3))
     self.remove(Nodes[4])
-    self.play(Tmp1.animate.shift(DOWN * HeiRat * 4 + LEFT * (CharaWid * 2 + 5)))
-    self.play(Tmp3.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 3)))
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 4 + LEFT * (CharaWid * 2 + 3.8)))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 2.5)))
     self.remove(Tmp1)
-    self.remove(Tmp3)
-    Nodes[3] = Tmp2
+    Nodes[4] = Tmp2
+
+    Tmp1 = SAMNode("ba", 1, 1)  # Split
+    Tmp1.next_to(Tmp3, DOWN, buff=0)
+    Tmp1.shift(LEFT * CharaWid * 0.5)
+    self.add(Tmp1), self.remove(Nodes[2])
+    Nodes[2] = Tmp1
+    TmpG = VGroup(Nodes[2], Nodes[3], Nodes[4])
+    GridH[2] = GridH[2] + 0.8
+    GridH[3] = GridH[3] + 0.8
+    GridH[4] = GridH[4] + 0.8
+    self.play(TmpG.animate.shift(RIGHT * 0.8))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
+    Nodes.append(Tmp3), GridH.append(GridH[2] - 0.8)
+
+    GridH[5] = GridH[4] + 1.7  # add N
+    Nodes[5].move_to(UP * 2.5 * HeiRat + RIGHT * GridH[5])
+    self.play(FadeIn(Nodes[5]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("banan", 1, 3)
+    Tmp3 = SAMNode("an", 1, 2)
+    Tmp1.move_to(Nodes[5])
+    Tmp1.shift(UP * HeiRat * 2.5)
+    Tmp3.next_to(Tmp1, DOWN, buff=0)
+    Tmp2.next_to(Tmp3, DOWN, buff=0)
+    Tmp3.shift(RIGHT * CharaWid * 1.5)
+    Tmp1.shift(RIGHT * CharaWid * 2.5)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2),FadeIn(Tmp3))
+    self.remove(Nodes[5])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 5 + LEFT * (CharaWid * 2.5 + 6.3)))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 3.1)))
+    self.remove(Tmp1)
+    Nodes[5] = Tmp2
+
+    Tmp1 = SAMNode("ban", 1, 1)  # Split
+    Tmp1.next_to(Tmp3, DOWN, buff=0)
+    Tmp1.shift(LEFT * CharaWid * 0.5)
+    self.add(Tmp1), self.remove(Nodes[3])
+    Nodes[3] = Tmp1
+    TmpG = VGroup(Nodes[3], Nodes[4], Nodes[5])
+    GridH[3] = GridH[3] + 1.1
+    GridH[4] = GridH[4] + 1.1
+    GridH[5] = GridH[5] + 1.1
+    self.play(TmpG.animate.shift(RIGHT * 1.1))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
+    Nodes.append(Tmp3), GridH.append(GridH[3] - 1.1)
+
+    GridH[6] = GridH[5] + 2  # add A
+    Nodes[6].move_to(UP * 3 * HeiRat + RIGHT * GridH[6])
+    self.play(FadeIn(Nodes[6]))
+    Tmp1 = SAMNode("", 1, 0)
+    Tmp2 = SAMNode("banana", 1, 3)
+    Tmp3 = SAMNode("ana", 1, 2)
+    Tmp4 = SAMNode("a", 1, 1)
+    Tmp1.move_to(Nodes[6])
+    Tmp1.shift(UP * HeiRat * 3)
+    Tmp4.next_to(Tmp1, DOWN, buff=0)
+    Tmp3.next_to(Tmp4, DOWN, buff=0)
+    Tmp2.next_to(Tmp3, DOWN, buff=0)
+    Tmp4.shift(RIGHT * CharaWid * 2.5)
+    Tmp3.shift(RIGHT * CharaWid * 1.5)
+    Tmp1.shift(RIGHT * CharaWid * 3)
+    self.play(FadeIn(Tmp1),FadeIn(Tmp2),FadeIn(Tmp3),FadeIn(Tmp4))
+    self.remove(Nodes[6])
+    self.play(Tmp1.animate.shift(DOWN * HeiRat * 6 + LEFT * (CharaWid * 3 + 9.4)))
+    self.play(Tmp4.animate.shift(DOWN * HeiRat * 5 + LEFT * (CharaWid * 3 + 8.1)))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat * 2 + LEFT * (CharaWid * 1 + 3.7)))
+    self.remove(Tmp1)
+    self.remove(Tmp4)
+    Nodes[6] = Tmp2
+
+    Tmp1 = SAMNode("bana", 1, 1)  # Split
+    Tmp1.next_to(Tmp3, DOWN, buff=0)
+    Tmp1.shift(LEFT * CharaWid * 0.5)
+    self.add(Tmp1), self.remove(Nodes[4])
+    Nodes[4] = Tmp1
+    TmpG = VGroup(Nodes[4], Nodes[5], Nodes[6])
+    GridH[4] = GridH[4] + 1.4
+    GridH[5] = GridH[5] + 1.4
+    GridH[6] = GridH[6] + 1.4
+    self.play(TmpG.animate.shift(RIGHT * 1.4))
+    self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
+    Nodes.append(Tmp3), GridH.append(GridH[4] - 1.4)
 
     self.wait(1)
 

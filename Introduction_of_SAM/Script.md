@@ -31,3 +31,4 @@ Now, add the character "A". Still, create node "2" for the string "BA", add the 
 Every time adding a character C and a node X for the hole new string, we shall deal with Transitions first. It is known that strings in X have a common suffix. Erased the last C, it becomes the common suffix of the ECs that can transit to X. The easiest way to find the ECs that have common suffix is to jump along Links. If the node of the hole old string is Y, the node of the hole new string is X. We jump along Links from Y, every node that doesn't have the Transition C
 
 ## Multiple Strings
+
