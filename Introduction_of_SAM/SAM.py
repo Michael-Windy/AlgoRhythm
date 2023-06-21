@@ -65,12 +65,16 @@ class BANANA(Scene):
     
     GridV.append(0.5)
     GridV.append(-0.5)
-    GridV.append(1)
+    GridV.append(0.8)
     GridV.append(-0.7)
-    GridV.append(1.6)
+    GridV.append(1.1)
     GridV.append(-0.9)
     GridV.append(1.9)
     GridV.append(-1.1)
+    GridV.append(1.9)
+    GridV.append(-1.3)
+    GridV.append(1.9)
+    GridV.append(-1.5)
 
     GridH[0] = -6.8  # add root
     Nodes[0].move_to(RIGHT * GridH[0])
@@ -139,6 +143,17 @@ class BANANA(Scene):
     self.play(Tmp1.animate.shift(DOWN * HeiRat * 3 + LEFT * (CharaWid * 1.5 + 2.4)))
     self.remove(Tmp1)
     Nodes[3] = Tmp2
+    Dots.append(Dot(point=[GridH[0], GridV[7], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[3], GridV[7], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[10], end=Dots[11], buff=0.05, stroke_width=3))
+    Dots.append(Dot(point=[GridH[2], GridV[9], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[3], GridV[9], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[12], end=Dots[13], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[5]),FadeIn(Arrows[6]), FadeIn(Dots[10]), FadeIn(Dots[11]), FadeIn(Dots[12]), FadeIn(Dots[13]))
+    Dots.append(Dot(point=[GridH[0], GridV[4], 0], radius=0.03))
+    Dots.append(Dot(point=[GridH[3], GridV[4], 0], radius=0.03))
+    Arrows.append(Arrow(start=Dots[15], end=Dots[14], buff=0.05, stroke_width=3))
+    self.play(FadeIn(Arrows[7]), FadeIn(Dots[14]), FadeIn(Dots[15]))
 
     GridH[4] = GridH[3] + 1.4  # add A
     Nodes[4].move_to(UP * 2 * HeiRat + RIGHT * GridH[4])
@@ -168,7 +183,22 @@ class BANANA(Scene):
     GridH[2] = GridH[2] + 0.8
     GridH[3] = GridH[3] + 0.8
     GridH[4] = GridH[4] + 0.8
-    self.play(TmpG.animate.shift(RIGHT * 0.8))
+    TmpA1 = Arrow(start=(UP * GridV[4] + RIGHT * GridH[3]), end=Dots[14], buff=0.05, stroke_width=3)
+    TmpA2 = Arrow(end=(UP * GridV[7] + RIGHT * GridH[3]), start=Dots[10], buff=0.05, stroke_width=3)
+    TmpA3 = Arrow(end=(UP * GridV[9] + RIGHT * GridH[3]), start=Dots[12], buff=0.05, stroke_width=3)
+    TmpA4 = Arrow(end=(UP * GridV[5] + RIGHT * GridH[2]), start=Dots[6], buff=0.05, stroke_width=3)
+    self.play(TmpG.animate.shift(RIGHT * 0.8),
+              ReplacementTransform(Arrows[7], TmpA1),
+              ReplacementTransform(Arrows[5], TmpA2),
+              ReplacementTransform(Arrows[6], TmpA3),
+              ReplacementTransform(Arrows[3], TmpA4),
+              Dots[15].animate.shift(RIGHT * 0.8),
+              Dots[11].animate.shift(RIGHT * 0.8),
+              Dots[13].animate.shift(RIGHT * 0.8),
+              Dots[7].animate.shift(RIGHT * 0.8))
+    Arrows[7] = TmpA1
+    Arrows[5] = TmpA2
+    Arrows[6] = TmpA3
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
     Nodes.append(Tmp3), GridH.append(GridH[2] - 0.8)
 
