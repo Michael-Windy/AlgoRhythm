@@ -2,7 +2,7 @@ from manimlib import *
 import numpy 
 CharaWid = 0.266
 HeiRat = 0.589
-RuntimeLog = open("Log.txt", "w")
+# RuntimeLog = open("Log.txt", "w")
 
 def CharaBox(CharinBox: str, BoxScale: float=1) -> VGroup:
   ChrtoText = Text(CharinBox).scale(BoxScale)
@@ -19,10 +19,10 @@ def TextBox(StringinBox: str, BoxScale: float=1) -> VGroup:
 
 def SAMNode(Strings: str, BoxScale: float=1, Hei: int=1) -> VGroup:
   Len = len(Strings)
-  RuntimeLog.write("\nLen:")
-  RuntimeLog.write(str(Len))
+  # RuntimeLog.write("\nLen:")
+  # RuntimeLog.write(str(Len))
   if(Len == 0):
-    RuntimeLog.write("\nHere")
+    # RuntimeLog.write("\nHere")
     return Polygon([BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0], 
                    [BoxScale * CharaWid * 0.5, 0.5 * HeiRat * BoxScale, 0],
                    [-BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0])
