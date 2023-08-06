@@ -2,13 +2,17 @@ from manimlib import *
 import numpy 
 CharaWid = 0.266
 HeiRat = 0.589
+<<<<<<< HEAD
 RuntimeLog = open("Log.txt", "w")
 
 def MyText(Txt: str, BoxScale: float=1) -> Text:
   return Text(text=Txt,font_size=(int)(24*BoxScale))
+=======
+# RuntimeLog = open("Log.txt", "w")
+>>>>>>> f5217c57603ba367ce6cb7beabef4fe7d639959b
 
 def CharaBox(CharinBox: str, BoxScale: float=1) -> VGroup:
-  ChrtoText = MyText(CharinBox).scale(BoxScale)
+  ChrtoText = Text(CharinBox).scale(BoxScale)
   VerL = Rectangle(BoxScale * CharaWid, BoxScale * 0.5)
   return VGroup(VerL, ChrtoText)
 
@@ -22,20 +26,20 @@ def TextBox(StringinBox: str, BoxScale: float=1) -> VGroup:
 
 def SAMNode(Strings: str, BoxScale: float=1, Hei: int=1) -> VGroup:
   Len = len(Strings)
-  RuntimeLog.write("\nLen:")
-  RuntimeLog.write(str(Len))
+  # RuntimeLog.write("\nLen:")
+  # RuntimeLog.write(str(Len))
   if(Len == 0):
-    RuntimeLog.write("\nHere")
+    # RuntimeLog.write("\nHere")
     return Polygon([BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0], 
                    [BoxScale * CharaWid * 0.5, 0.5 * HeiRat * BoxScale, 0],
                    [-BoxScale * CharaWid * 0.5, -0.5 * HeiRat * BoxScale, 0])
   MyNode = VGroup()
   SufT = []
-  SufT.append(MyText(Strings,BoxScale))
+  SufT.append(Text(text=Strings,font_size=BoxScale*24))
   MyNode += SufT[0]
   for i in range(0,Hei - 1):
     Strings = Strings[1:]
-    SufT.append(MyText(Strings,BoxScale))
+    SufT.append(Text(text=Strings,font_size=BoxScale*24))
     SufT[i + 1].move_to(SufT[i])
     SufT[i + 1].shift(UP * HeiRat * BoxScale)
     SufT[i + 1].align_to(SufT[i],RIGHT)
@@ -72,11 +76,11 @@ class BANANA(Scene):
     GridV.append(-0.7)
     GridV.append(1.1)
     GridV.append(-0.9)
-    GridV.append(1.4)
+    GridV.append(1.9)
     GridV.append(-1.1)
-    GridV.append(1.7)
+    GridV.append(1.9)
     GridV.append(-1.3)
-    GridV.append(2)
+    GridV.append(1.9)
     GridV.append(-1.5)
 
     GridH[0] = -6.8  # add root
@@ -183,14 +187,13 @@ class BANANA(Scene):
     self.add(Tmp1), self.remove(Nodes[2])
     Nodes[2] = Tmp1
     TmpG = VGroup(Nodes[2], Nodes[3], Nodes[4])
-    GridH.append(GridH[2])
     GridH[2] = GridH[2] + 0.8
     GridH[3] = GridH[3] + 0.8
     GridH[4] = GridH[4] + 0.8
-    TmpA1 = Arrow(start=(UP * GridV[4] + RIGHT * (GridH[3] - 0.03)), end=Dots[14], buff=0.05, stroke_width=3)
-    TmpA2 = Arrow(end=(UP * GridV[7] + RIGHT * (GridH[3] - 0.03)), start=Dots[10], buff=0.05, stroke_width=3)
-    TmpA3 = Arrow(end=(UP * GridV[9] + RIGHT * (GridH[3] - 0.03)), start=Dots[12], buff=0.05, stroke_width=3)
-    TmpA4 = Arrow(end=(UP * GridV[5] + RIGHT * (GridH[2] - 0.03)), start=Dots[6], buff=0.05, stroke_width=3)
+    TmpA1 = Arrow(start=(UP * GridV[4] + RIGHT * GridH[3]), end=Dots[14], buff=0.05, stroke_width=3)
+    TmpA2 = Arrow(end=(UP * GridV[7] + RIGHT * GridH[3]), start=Dots[10], buff=0.05, stroke_width=3)
+    TmpA3 = Arrow(end=(UP * GridV[9] + RIGHT * GridH[3]), start=Dots[12], buff=0.05, stroke_width=3)
+    TmpA4 = Arrow(end=(UP * GridV[5] + RIGHT * GridH[2]), start=Dots[6], buff=0.05, stroke_width=3)
     self.play(TmpG.animate.shift(RIGHT * 0.8),
               ReplacementTransform(Arrows[7], TmpA1),
               ReplacementTransform(Arrows[5], TmpA2),
@@ -203,23 +206,8 @@ class BANANA(Scene):
     Arrows[7] = TmpA1
     Arrows[5] = TmpA2
     Arrows[6] = TmpA3
-    Arrows[3] = TmpA4
-    Dots.append(Dot(point=[GridH[2], GridV[11], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[3], GridV[11], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[16], end=Dots[17], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[7], GridV[0], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[2], GridV[0], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[19], end=Dots[18], buff=0.05, stroke_width=3))
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
-    self.play(FadeIn(Arrows[8]),FadeIn(Arrows[9]), FadeIn(Dots[16]), FadeIn(Dots[17]), FadeIn(Dots[18]), FadeIn(Dots[19]))
-    Nodes.append(Tmp3)
-    Dots.append(Dot(point=[GridH[3], GridV[1], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[4], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[20], end=Dots[21], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[7], GridV[8], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[4], GridV[8], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[23], end=Dots[22], buff=0.05, stroke_width=3))
-    self.play(FadeIn(Arrows[10]), FadeIn(Arrows[11]), FadeIn(Dots[20]), FadeIn(Dots[21]), FadeIn(Dots[22]), FadeIn(Dots[23]))
+    Nodes.append(Tmp3), GridH.append(GridH[2] - 0.8)
 
     GridH[5] = GridH[4] + 1.7  # add N
     Nodes[5].move_to(UP * 2.5 * HeiRat + RIGHT * GridH[5])
@@ -246,34 +234,12 @@ class BANANA(Scene):
     self.add(Tmp1), self.remove(Nodes[3])
     Nodes[3] = Tmp1
     TmpG = VGroup(Nodes[3], Nodes[4], Nodes[5])
-    GridH.append(GridH[3])
     GridH[3] = GridH[3] + 1.1
     GridH[4] = GridH[4] + 1.1
     GridH[5] = GridH[5] + 1.1
-    TmpA1 = Arrow(start=(UP * GridV[8] + RIGHT * (GridH[4] - 0.03)), end=Dots[22], buff=0.05, stroke_width=3) 
-    self.play(TmpG.animate.shift(RIGHT * 1.1),
-              ReplacementTransform(Arrows[11], TmpA1),
-              VGroup(Arrows[10], Dots[20], Dots[21]).animate.shift(RIGHT * 1.1),
-              Dots[23].animate.shift(RIGHT * 1.1))
-    Arrows[11] = TmpA1
+    self.play(TmpG.animate.shift(RIGHT * 1.1))
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
-    Dots.append(Dot(point=[GridH[8], GridV[6], 0], radius=0.03)) # Useless
-    Dots.append(Dot(point=[GridH[3], GridV[4], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[25], end=Dots[15], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[2], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[26], end=Dots[20], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[8], GridV[3], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[4], GridV[3], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[27], end=Dots[28], buff=0.05, stroke_width=3))
-    self.play(FadeIn(Arrows[12]), FadeIn(Arrows[13]), FadeIn(Arrows[14]),
-              FadeIn(Dots[25]), FadeIn(Dots[26]), FadeIn(Dots[27]), FadeIn(Dots[28]))
-    Nodes.append(Tmp3)
-    Dots.append(Dot(point=[GridH[8], GridV[10], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[5], GridV[10], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[30], end=Dots[29], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[5], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[21], end=Dots[31], buff=0.05, stroke_width=3))
-    self.play(FadeIn(Arrows[15]), FadeIn(Arrows[16]), FadeIn(Dots[29]), FadeIn(Dots[30]), FadeIn(Dots[31]))
+    Nodes.append(Tmp3), GridH.append(GridH[3] - 1.1)
 
     GridH[6] = GridH[5] + 2  # add A
     Nodes[6].move_to(UP * 3 * HeiRat + RIGHT * GridH[6])
@@ -305,31 +271,12 @@ class BANANA(Scene):
     self.add(Tmp1), self.remove(Nodes[4])
     Nodes[4] = Tmp1
     TmpG = VGroup(Nodes[4], Nodes[5], Nodes[6])
-    GridH.append(GridH[4])
     GridH[4] = GridH[4] + 1.4
     GridH[5] = GridH[5] + 1.4
     GridH[6] = GridH[6] + 1.4
-    TmpA1 = Arrow(end=(UP * GridV[1] + RIGHT * (GridH[4] - 0.03)), start=Dots[20], buff=0.05, stroke_width=3)
-    TmpA2 = Arrow(start=(UP * GridV[10] + RIGHT * (GridH[5] - 0.03)), end=Dots[29], buff=0.05, stroke_width=3)
-    self.play(TmpG.animate.shift(RIGHT * 1.4),
-              ReplacementTransform(Arrows[10], TmpA1),
-              ReplacementTransform(Arrows[15], TmpA2),
-              VGroup(Dots[21], Dots[30], Dots[31], Arrows[16]).animate.shift(RIGHT * 1.4))
-    Arrows[10] = TmpA1
-    Arrows[15] = TmpA2
+    self.play(TmpG.animate.shift(RIGHT * 1.4))
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
-    Nodes.append(Tmp3)
-    Dots.append(Dot(point=[GridH[5], GridV[3], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[28], end=Dots[32], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[9], GridV[4], 0], radius=0.03))
-    Dots.append(Dot(point=[GridH[4], GridV[4], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[34], end=Dots[33], buff=0.05, stroke_width=3))
-    self.play(FadeIn(Arrows[17]), FadeIn(Arrows[18]), FadeIn(Dots[32]), FadeIn(Dots[33]), FadeIn(Dots[34]))
-    Dots[24] = Dot(point=[GridH[6], GridV[1], 0], radius=0.03)
-    Arrows.append(Arrow(start=Dots[31], end=Dots[24], buff=0.05, stroke_width=3))
-    Dots.append(Dot(point=[GridH[6], GridV[8], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[35], end=Dots[23], buff=0.05, stroke_width=3))
-    self.play(FadeIn(Arrows[19]), FadeIn(Arrows[20]), FadeIn(Dots[24]), FadeIn(Dots[35]))
+    Nodes.append(Tmp3), GridH.append(GridH[4] - 1.4)
 
     self.wait(1)
 
@@ -352,25 +299,25 @@ class Constru(Scene):
 class EC2(Scene):
   def construct(self):
     Numb = []
-    Numb.append(MyText("0"))
-    Numb.append(MyText("1"))
-    Numb.append(MyText("2"))
-    Numb.append(MyText("3"))
-    Numb.append(MyText("4"))
-    Numb.append(MyText("5"))
-    Numb.append(MyText("6"))
+    Numb.append(Text("0"))
+    Numb.append(Text("1"))
+    Numb.append(Text("2"))
+    Numb.append(Text("3"))
+    Numb.append(Text("4"))
+    Numb.append(Text("5"))
+    Numb.append(Text("6"))
 
     EP = []
-    EP.append(MyText("{0,1,2,3,4,5,6}"))
-    EP.append(MyText("{2,4,6}"))
-    EP.append(MyText("{3,5}"))
-    EP.append(MyText("{4,6}"))
-    EP.append(MyText("{1}"))
-    EP.append(MyText("{2}"))
-    EP.append(MyText("{3}"))
-    EP.append(MyText("{4}"))
-    EP.append(MyText("{5}"))
-    EP.append(MyText("{6}"))
+    EP.append(Text("{0,1,2,3,4,5,6}"))
+    EP.append(Text("{2,4,6}"))
+    EP.append(Text("{3,5}"))
+    EP.append(Text("{4,6}"))
+    EP.append(Text("{1}"))
+    EP.append(Text("{2}"))
+    EP.append(Text("{3}"))
+    EP.append(Text("{4}"))
+    EP.append(Text("{5}"))
+    EP.append(Text("{6}"))
     EP[0].to_corner(UL)
     for i in range(0,9):
       EP[i + 1].next_to(EP[i],DOWN)
@@ -385,36 +332,9 @@ class EC2(Scene):
     SubStr[2].next_to(EP[3], RIGHT)
     SubStr.append(TextBox("ana"))
     SubStr[3].next_to(SubStr[2], RIGHT)
-    SubStr.append(TextBox("bana"))
-    SubStr[4].next_to(EP[7], RIGHT)
-    SubStr.append(TextBox("nana"))
-    SubStr[5].next_to(EP[9], RIGHT)
-    SubStr.append(TextBox("anana"))
-    SubStr[6].next_to(SubStr[5], RIGHT)
-    SubStr.append(TextBox("banana"))
-    SubStr[7].next_to(SubStr[6], RIGHT)
-    SubStr.append(TextBox("ba"))
-    SubStr[8].next_to(EP[5], RIGHT)
-    SubStr.append(TextBox("n"))
-    SubStr[9].next_to(EP[2], RIGHT)
-    SubStr.append(TextBox("an"))
-    SubStr[10].next_to(SubStr[9], RIGHT)
-    SubStr.append(TextBox("ban"))
-    SubStr[11].next_to(EP[6], RIGHT)
-    SubStr.append(TextBox("nan"))
-    SubStr[12].next_to(EP[8], RIGHT)
-    SubStr.append(TextBox("anan"))
-    SubStr[13].next_to(SubStr[12], RIGHT)
-    SubStr.append(TextBox("banan"))
-    SubStr[14].next_to(SubStr[13], RIGHT)
-    SubStr.append(TextBox("b"))
-    SubStr[15].next_to(EP[4], RIGHT)
 
-    TmpG = VGroup()
     for i in range(0,10):
-      TmpG.add(EP[i])
-    self.play(FadeIn(TmpG))
-
+      self.play(FadeIn(EP[i]))
     S = TextBox("banana", 2).to_corner(UR)
     self.play(FadeIn(S))
     EmpTy = Line(DOWN * 0.5, UP * 0.5, color=BLUE)
@@ -438,28 +358,17 @@ class EC2(Scene):
     StrSq[1].shift(RIGHT * CharaWid * 4)
     StrSq.append(StrSq[1].copy())
     StrSq[2].shift(RIGHT * CharaWid * 4)
-    self.play(FadeIn(StrSq[0]), FadeIn(StrSq[1]), FadeIn(StrSq[2]))
-    Tmp3 = StrSq[0].copy()
-    Tmp4 = StrSq[1].copy()
-    Tmp5 = StrSq[2].copy()
-    self.play(ReplacementTransform(VGroup(StrSq[0], StrSq[1], StrSq[2]), SubStr[1]))
-    StrSq[0] = Tmp3
-    StrSq[1] = Tmp4
-    StrSq[2] = Tmp5
+    self.play(FadeIn(VGroup(StrSq[0], StrSq[1], StrSq[2])))
+    self.play(ReplacementTransform(VGroup(StrSq[0], StrSq[1], StrSq[2]).copy(), SubStr[1]))
 
     StrSq.append(Rectangle(4 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
     StrSq[3].move_to(S)
     StrSq.append(StrSq[3].copy())
     StrSq[4].shift(RIGHT * CharaWid * 4)
-    self.play(FadeIn(StrSq[1]), FadeIn(StrSq[2]))
+    self.play(FadeOut(StrSq[0]))
     self.play(ReplacementTransform(StrSq[1], StrSq[3]),
               ReplacementTransform(StrSq[2], StrSq[4]))
-    Tmp1 = StrSq[3].copy()
-    Tmp2 = StrSq[4].copy()
-    self.play(ReplacementTransform(VGroup(StrSq[3], StrSq[4]), SubStr[2]))
-    StrSq[3] = Tmp1
-    StrSq[4] = Tmp2
-    self.play(FadeIn(StrSq[3]), FadeIn(StrSq[4]))
+    self.play(TransformFromCopy(VGroup(StrSq[3], StrSq[4]), SubStr[2]))
 
     StrSq.append(Rectangle(6 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
     StrSq[5].move_to(S)
@@ -468,161 +377,9 @@ class EC2(Scene):
     StrSq[6].shift(RIGHT * CharaWid * 4)
     self.play(ReplacementTransform(StrSq[3], StrSq[5]),
               ReplacementTransform(StrSq[4], StrSq[6]))
-    Tmp1 = StrSq[5].copy()
-    Tmp2 = StrSq[6].copy()
-    self.play(ReplacementTransform(VGroup(StrSq[5], StrSq[6]), SubStr[3]))
-    StrSq[5] = Tmp1
-    StrSq[6] = Tmp2
-
-    StrSq.append(Rectangle(8 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[7].move_to(S)
-    StrSq[7].shift(LEFT * CharaWid * 2)
-    self.play(FadeIn(StrSq[5]))
-    self.play(ReplacementTransform(StrSq[5], StrSq[7]))
-    self.play(ReplacementTransform(StrSq[7], SubStr[4]))
-
-    StrSq.append(Rectangle(8 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[8].move_to(S)
-    StrSq[8].shift(RIGHT * CharaWid * 2)
-    self.play(FadeIn(StrSq[6]))
-    self.play(ReplacementTransform(StrSq[6], StrSq[8]))
-    Tmp1 = StrSq[8].copy()
-    self.play(ReplacementTransform(StrSq[8], SubStr[5]))
-    StrSq[8] = Tmp1
-
-    StrSq.append(Rectangle(10 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[9].move_to(S)
-    StrSq[9].shift(RIGHT * CharaWid)
-    self.play(FadeIn(StrSq[8]))
-    self.play(ReplacementTransform(StrSq[8], StrSq[9]))
-    Tmp1 = StrSq[9].copy()
-    self.play(ReplacementTransform(StrSq[9], SubStr[6]))
-    StrSq[9] = Tmp1
-
-    StrSq.append(Rectangle(12 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[10].move_to(S)
-    self.play(FadeIn(StrSq[9]))
-    self.play(ReplacementTransform(StrSq[9], StrSq[10]))
-    Tmp1 = StrSq[10].copy()
-    self.play(ReplacementTransform(StrSq[10], SubStr[7]))
-    StrSq[10] = Tmp1
-
-    StrSq.append(Rectangle(4 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[11].move_to(S)
-    StrSq[11].shift(LEFT * CharaWid * 4)
-    self.play(FadeIn(StrSq[0]))
-    self.play(ReplacementTransform(StrSq[0], StrSq[11]))
-    self.play(ReplacementTransform(StrSq[11], SubStr[8]))
-
-    StrSq.append(Rectangle(2 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[12].move_to(S)
-    StrSq[12].shift(LEFT * CharaWid)
-    StrSq.append(StrSq[12].copy())
-    StrSq[13].shift(RIGHT * CharaWid * 4)
-    self.play(FadeIn(StrSq[12]), FadeIn(StrSq[13]))
-    Tmp1 = StrSq[12].copy()
-    Tmp2 = StrSq[13].copy()
-    self.play(ReplacementTransform(VGroup(StrSq[12], StrSq[13]), SubStr[9]))
-    StrSq[12] = Tmp1
-    StrSq[13] = Tmp2
-    
-    StrSq.append(Rectangle(4 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[14].move_to(S)
-    StrSq[14].shift(LEFT * CharaWid * 2)
-    StrSq.append(StrSq[14].copy())
-    StrSq[15].shift(RIGHT * CharaWid * 4)
-    self.play(FadeIn(StrSq[12]), FadeIn(StrSq[13]))
-    self.play(ReplacementTransform(StrSq[12], StrSq[14]),ReplacementTransform(StrSq[13], StrSq[15]))
-    Tmp1 = StrSq[14].copy()
-    Tmp2 = StrSq[15].copy()
-    self.play(ReplacementTransform(VGroup(StrSq[14], StrSq[15]), SubStr[10]))
-    StrSq[14] = Tmp1
-    StrSq[15] = Tmp2
-
-    StrSq.append(Rectangle(6 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[16].move_to(S)
-    StrSq[16].shift(LEFT * CharaWid * 3)
-    self.play(FadeIn(StrSq[14]))
-    self.play(ReplacementTransform(StrSq[14], StrSq[16]))
-    self.play(ReplacementTransform(StrSq[16], SubStr[11]))
-
-    StrSq.append(Rectangle(6 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[17].move_to(S)
-    StrSq[17].shift(RIGHT * CharaWid)
-    self.play(FadeIn(StrSq[15]))
-    self.play(ReplacementTransform(StrSq[15], StrSq[17]))
-    Tmp1 = StrSq[17].copy()
-    self.play(ReplacementTransform(StrSq[17], SubStr[12]))
-    StrSq[17] = Tmp1
-
-    StrSq.append(Rectangle(8 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[18].move_to(S)
-    self.play(FadeIn(StrSq[17]))
-    self.play(ReplacementTransform(StrSq[17], StrSq[18]))
-    Tmp1 = StrSq[18].copy()
-    self.play(ReplacementTransform(StrSq[18], SubStr[13]))
-    StrSq[18] = Tmp1
-
-    StrSq.append(Rectangle(10 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[19].move_to(S)
-    StrSq[19].shift(LEFT * CharaWid)
-    self.play(FadeIn(StrSq[18]))
-    self.play(ReplacementTransform(StrSq[18], StrSq[19]))
-    self.play(ReplacementTransform(StrSq[19], SubStr[14]))
-
-    StrSq.append(Rectangle(2 * CharaWid, 1, stroke_opacity=0, fill_opacity=0.3, fill_color=BLUE))
-    StrSq[20].move_to(S)
-    StrSq[20].shift(LEFT * CharaWid * 5)
-    self.play(FadeIn(StrSq[20]))
-    self.play(ReplacementTransform(StrSq[20], SubStr[15]))
+    self.play(TransformFromCopy(VGroup(StrSq[5], StrSq[6]), SubStr[3]))
 
     self.wait()
-
-class EC3(Scene):
-  def construct(self):
-    Tit = MyText("{5}")
-    Str1 = MyText("banan")
-    Str2 = MyText("anan")
-    Str3 = MyText("nan")
-    VGroup(Tit, Str3, Str2, Str1).arrange(DOWN)
-    Str2.align_to(Str1,RIGHT)
-    Str3.align_to(Str2,RIGHT)
-    self.play(FadeIn(Tit))
-    self.play(FadeIn(Str1))
-    self.play(TransformFromCopy(Str1, Str2))
-    self.play(TransformFromCopy(Str2, Str3))
-    self.play(FadeOut(VGroup(Tit, Str3, Str2, Str1)))
-
-class Intro1(Scene):
-  def construct(self):
-    Str1 = MyText("SAM", 2)
-    Str2 = MyText("String", 2)
-    A1 = Arrow(LEFT, RIGHT)
-    A2 = Arrow(RIGHT, LEFT)
-    TmpG1 = VGroup(A1, A2).arrange(DOWN)
-    TmpG2 = VGroup(Str1, TmpG1, Str2).arrange(RIGHT)
-    self.play(Write(TmpG2))
-    self.wait(1)
-
-class Intro2(Scene):
-  def construct(self):
-    Str1 = Tex("S","A","M", font_size=200)
-    Str2 = Tex("S","uffix~","A","uto","M","aton", font_size=100)
-    self.play(Write(Str1))
-    self.play(TransformMatchingTex(Str1, Str2, ))
-    self.wait(1)
-
-class ShowNode(Scene):
-  def construct(self):
-    Tit = MyText("{5}").shift(LEFT * 2.5)
-    Tmp1 = SAMNode("banan", 1, 3).shift(DOWN + LEFT)
-    self.play(Write(Tmp1), Write(Tit))
-    Ar1 = Arrow(start=LEFT, end=RIGHT, stroke_width=3, color="#8080FF").shift([1.5, 0.5,0])
-    Tit1 = MyText("Link").next_to(Ar1, DOWN)
-    Ar2 = Arrow(start=LEFT, end=RIGHT, stroke_width=3, color="#FF8080").shift([1.5,-0.5,0])
-    Tit2 = MyText("Transition").next_to(Ar2, DOWN)
-    self.play(Write(Ar1), Write(Ar2), Write(Tit1), Write(Tit2))
-    self.wait(1)
 
 class EC(Scene):
   def construct(self):
@@ -665,6 +422,7 @@ class EC(Scene):
     self.play(FadeOut(NA))
 
     self.wait(1)
+<<<<<<< HEAD
 
 class LinkTree(Scene):
   def construct(self):
@@ -870,3 +628,9 @@ class Trian(Scene):
 # manimgl SAM.py EC2 -o -c "BLACK" --frame_rate 60
 # manimgl SAM.py DAG -o -c "BLACK" --frame_rate 30
 # manimgl SAM.py Transition -o -c "BLACK" --frame_rate 30
+=======
+# manimgl SAM.py EC -o -c "BLACK"
+# manimgl SAM.py EC2 -o -c "BLACK"
+# manimgl SAM.py Constru -o -c "BLACK"
+# manimgl SAM.py BANANA -o -c "BLACK"
+>>>>>>> f5217c57603ba367ce6cb7beabef4fe7d639959b
