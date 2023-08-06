@@ -2,14 +2,10 @@ from manimlib import *
 import numpy 
 CharaWid = 0.266
 HeiRat = 0.589
-<<<<<<< HEAD
 RuntimeLog = open("Log.txt", "w")
 
 def MyText(Txt: str, BoxScale: float=1) -> Text:
   return Text(text=Txt,font_size=(int)(24*BoxScale))
-=======
-# RuntimeLog = open("Log.txt", "w")
->>>>>>> f5217c57603ba367ce6cb7beabef4fe7d639959b
 
 def CharaBox(CharinBox: str, BoxScale: float=1) -> VGroup:
   ChrtoText = Text(CharinBox).scale(BoxScale)
@@ -422,7 +418,6 @@ class EC(Scene):
     self.play(FadeOut(NA))
 
     self.wait(1)
-<<<<<<< HEAD
 
 class LinkTree(Scene):
   def construct(self):
@@ -617,8 +612,8 @@ class ComplAdd(Scene):
       self.play(FadeIn(MyT[i]))
     self.wait(1)
 
-class Trian(Scene):
-  construct(self):
+# class Trian(Scene):
+#   construct(self):
     
 
 # manimgl SAM.py EC -o -c "BLACK"
@@ -628,9 +623,3 @@ class Trian(Scene):
 # manimgl SAM.py EC2 -o -c "BLACK" --frame_rate 60
 # manimgl SAM.py DAG -o -c "BLACK" --frame_rate 30
 # manimgl SAM.py Transition -o -c "BLACK" --frame_rate 30
-=======
-# manimgl SAM.py EC -o -c "BLACK"
-# manimgl SAM.py EC2 -o -c "BLACK"
-# manimgl SAM.py Constru -o -c "BLACK"
-# manimgl SAM.py BANANA -o -c "BLACK"
->>>>>>> f5217c57603ba367ce6cb7beabef4fe7d639959b
