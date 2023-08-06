@@ -5,7 +5,7 @@ HeiRat = 0.589
 RuntimeLog = open("Log.txt", "w")
 
 def MyText(Txt: str, BoxScale: float=1) -> Text:
-  return Text(text=Txt,font_size=24*BoxScale)
+  return Text(text=Txt,font_size=(int)(24*BoxScale))
 
 def CharaBox(CharinBox: str, BoxScale: float=1) -> VGroup:
   ChrtoText = MyText(CharinBox).scale(BoxScale)
@@ -729,6 +729,12 @@ class LinkTree(Scene):
     for i in range(0,9):
       GDots.add(Edges[i])
     self.play(FadeIn(GDots))
+    TmpE1 = EP[6].copy()
+    TmpE1.set_color(RED)
+    self.play(TransformFromCopy(EP[9], TmpE1))
+    TmpE2 = EP[2].copy()
+    TmpE2.set_color(RED)
+    self.play(TransformFromCopy(TmpE1, TmpE2))
 
 class DAG(Scene):
   def construct(self):
@@ -784,15 +790,78 @@ class DAG(Scene):
     EP.append(MyText("n", 0.5))
     EP.append(MyText("n", 0.5))
     EP.append(MyText("n", 0.5))
-    EP.append(MyText("a", 1))
-    EP.append(MyText("a", 1))
-    EP.append(MyText("n", 1))
-    EP.append(MyText("n", 1))
-    EP.append(MyText("a", 1))
+    EP.append(MyText("a", 0.5))
+    EP.append(MyText("a", 0.5))
+    EP.append(MyText("n", 0.5))
+    EP.append(MyText("n", 0.5))
+    EP.append(MyText("a", 0.5))
     for i in range(0,11):
       EP[i].move_to(Edges[i])
+      EP[i].shift(UP * 0.3)
     for i in range(0,11):
       self.play(FadeIn(VGroup(Edges[i], EP[i])))
+
+class Transition(Scene):
+  def construct(self):
+    Node1 = SAMNode("banan", 1, 3).move_to([2,0,0])
+    Node2 = SAMNode("bana", 1, 1).move_to([-2,-1,0])
+    Node3 = SAMNode("ana", 1, 2).move_to([-2,1,0])
+    Dot1 = Dot(radius=0.03).next_to(Node1, LEFT, buff=0.05)
+    Dot1.shift(RIGHT * 0.3)
+    Dot2 = Dot(radius=0.03).next_to(Node2, RIGHT, buff=0.05)
+    Dot3 = Dot(radius=0.03).next_to(Node3, RIGHT, buff=0.05)
+    Edge1 = Arrow(start=Dot2, end=Dot1, buff = 0.05, stroke_width=3, color="#FF8080")
+    Edge2 = Arrow(start=Dot3, end=Dot1, buff = 0.05, stroke_width=3, color="#FF8080")
+    HLi1 = MyText("n").move_to(Node1)
+    HLi2 = MyText("n").move_to(Node1)
+    HLi3 = MyText("n").move_to(Node1)
+    HLi1.set_color(RED)
+    HLi2.set_color(RED)
+    HLi3.set_color(RED)
+    HLi1.shift(RIGHT * 2.5 * CharaWid)
+    HLi2.shift(UP * HeiRat + RIGHT * 2.5 * CharaWid)
+    HLi3.shift(DOWN * (HeiRat + 0.05) + RIGHT * 2.5 * CharaWid)
+    EP1 = MyText("n", 0.5).move_to(Edge1)
+    EP2 = MyText("n", 0.5).move_to(Edge2)
+    EP1.shift(UP * 0.2)
+    EP2.shift(UP * 0.2)
+    self.play(FadeIn(VGroup(Node2, Node3)))
+    self.play(TransformFromCopy(VGroup(Node2, Node3), Node1))
+    self.play(FadeIn(VGroup(HLi1, HLi2, HLi3)))
+    self.play(FadeIn(VGroup(Edge1, Edge2, Dot2, Dot3, Dot1, EP1, EP2)))
+    self.wait(1)
+
+class ComplAdd(Scene):
+  def construct(self):
+    T1 = Tex("O(n)").scale(3)
+    T1.move_to([-2, 0, 0])
+    T2 = Tex("Time").move_to([1, 1, 0])
+    T3 = Tex("Space").move_to([1, -1, 0])
+    self.play(Write(T1))
+    self.play(Write(T2))
+    self.play(Write(T3))
+    self.wait(1)
+    self.play(FadeOut(VGroup(T1, T2, T3)))
+
+    MyT = []
+    GrT = VGroup()
+    MyT.append(MyText("b"))
+    MyT.append(MyText("a"))
+    MyT.append(MyText("n"))
+    MyT.append(MyText("a"))
+    MyT.append(MyText("n"))
+    MyT.append(MyText("a"))
+    for i in range(0, 6):
+      GrT.add(MyT[i])
+    GrT.arrange(RIGHT)
+    GrT.move_to([0, 0, 0])
+    for i in range(0, 6):
+      self.play(FadeIn(MyT[i]))
+    self.wait(1)
+
+class Trian(Scene):
+  construct(self):
+    
 
 # manimgl SAM.py EC -o -c "BLACK"
 # manimgl SAM.py EC2 -o -c "BLACK"
@@ -800,3 +869,4 @@ class DAG(Scene):
 # manimgl SAM.py BANANA -o -c "BLACK"
 # manimgl SAM.py EC2 -o -c "BLACK" --frame_rate 60
 # manimgl SAM.py DAG -o -c "BLACK" --frame_rate 30
+# manimgl SAM.py Transition -o -c "BLACK" --frame_rate 30
