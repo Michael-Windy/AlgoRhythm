@@ -115,11 +115,11 @@ class BANANA(Scene):
     Nodes[1] = Tmp2
     Dots.append(Dot(point=[GridH[0], GridV[1], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[1], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[0], end=Dots[1], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[0], end=Dots[1], buff=0.05, stroke_width=3, color="#FF8080"))
     self.play(FadeIn(Arrows[0]), FadeIn(Dots[0]), FadeIn(Dots[1]))
     Dots.append(Dot(point=[GridH[0], GridV[0], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[1], GridV[0], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[3], end=Dots[2], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[3], end=Dots[2], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[1]), FadeIn(Dots[3]), FadeIn(Dots[2]))
 
     GridH[2] = GridH[1] + 0.8  # add A
@@ -138,14 +138,14 @@ class BANANA(Scene):
     Nodes[2] = Tmp2
     Dots.append(Dot(point=[GridH[0], GridV[3], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[2], GridV[3], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[4], end=Dots[5], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[4], end=Dots[5], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[1], GridV[5], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[2], GridV[5], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[6], end=Dots[7], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[6], end=Dots[7], buff=0.05, stroke_width=3, color="#FF8080"))
     self.play(FadeIn(Arrows[2]),FadeIn(Arrows[3]), FadeIn(Dots[4]), FadeIn(Dots[5]), FadeIn(Dots[6]), FadeIn(Dots[7]))
     Dots.append(Dot(point=[GridH[0], GridV[2], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[2], GridV[2], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[9], end=Dots[8], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[9], end=Dots[8], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[4]), FadeIn(Dots[8]), FadeIn(Dots[9]))
    
     GridH[3] = GridH[2] + 1.1  # add N
@@ -164,14 +164,14 @@ class BANANA(Scene):
     Nodes[3] = Tmp2
     Dots.append(Dot(point=[GridH[0], GridV[7], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[3], GridV[7], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[10], end=Dots[11], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[10], end=Dots[11], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[2], GridV[9], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[3], GridV[9], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[12], end=Dots[13], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[12], end=Dots[13], buff=0.05, stroke_width=3, color="#FF8080"))
     self.play(FadeIn(Arrows[5]),FadeIn(Arrows[6]), FadeIn(Dots[10]), FadeIn(Dots[11]), FadeIn(Dots[12]), FadeIn(Dots[13]))
     Dots.append(Dot(point=[GridH[0], GridV[4], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[3], GridV[4], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[15], end=Dots[14], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[15], end=Dots[14], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[7]), FadeIn(Dots[14]), FadeIn(Dots[15]))
 
     GridH[4] = GridH[3] + 1.4  # add A
@@ -203,10 +203,10 @@ class BANANA(Scene):
     GridH[2] = GridH[2] + 0.8
     GridH[3] = GridH[3] + 0.8
     GridH[4] = GridH[4] + 0.8
-    TmpA1 = Arrow(start=(UP * GridV[4] + RIGHT * (GridH[3] - 0.03)), end=Dots[14], buff=0.05, stroke_width=3)
-    TmpA2 = Arrow(end=(UP * GridV[7] + RIGHT * (GridH[3] - 0.03)), start=Dots[10], buff=0.05, stroke_width=3)
-    TmpA3 = Arrow(end=(UP * GridV[9] + RIGHT * (GridH[3] - 0.03)), start=Dots[12], buff=0.05, stroke_width=3)
-    TmpA4 = Arrow(end=(UP * GridV[5] + RIGHT * (GridH[2] - 0.03)), start=Dots[6], buff=0.05, stroke_width=3)
+    TmpA1 = Arrow(start=(UP * GridV[4] + RIGHT * (GridH[3] - 0.03)), end=Dots[14], buff=0.05, stroke_width=3, color="#8080FF")
+    TmpA2 = Arrow(end=(UP * GridV[7] + RIGHT * (GridH[3] - 0.03)), start=Dots[10], buff=0.05, stroke_width=3, color="#FF8080")
+    TmpA3 = Arrow(end=(UP * GridV[9] + RIGHT * (GridH[3] - 0.03)), start=Dots[12], buff=0.05, stroke_width=3, color="#FF8080")
+    TmpA4 = Arrow(end=(UP * GridV[5] + RIGHT * (GridH[2] - 0.03)), start=Dots[6], buff=0.05, stroke_width=3, color="#FF8080")
     self.play(TmpG.animate.shift(RIGHT * 0.8),
               ReplacementTransform(Arrows[7], TmpA1),
               ReplacementTransform(Arrows[5], TmpA2),
@@ -222,19 +222,19 @@ class BANANA(Scene):
     Arrows[3] = TmpA4
     Dots.append(Dot(point=[GridH[2], GridV[11], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[3], GridV[11], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[16], end=Dots[17], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[16], end=Dots[17], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[7], GridV[0], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[2], GridV[0], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[19], end=Dots[18], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[19], end=Dots[18], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
     self.play(FadeIn(Arrows[8]),FadeIn(Arrows[9]), FadeIn(Dots[16]), FadeIn(Dots[17]), FadeIn(Dots[18]), FadeIn(Dots[19]))
     Nodes.append(Tmp3)
     Dots.append(Dot(point=[GridH[3], GridV[1], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[4], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[20], end=Dots[21], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[20], end=Dots[21], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[7], GridV[8], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[4], GridV[8], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[23], end=Dots[22], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[23], end=Dots[22], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[10]), FadeIn(Arrows[11]), FadeIn(Dots[20]), FadeIn(Dots[21]), FadeIn(Dots[22]), FadeIn(Dots[23]))
 
     GridH[5] = GridH[4] + 1.7  # add N
@@ -266,7 +266,7 @@ class BANANA(Scene):
     GridH[3] = GridH[3] + 1.1
     GridH[4] = GridH[4] + 1.1
     GridH[5] = GridH[5] + 1.1
-    TmpA1 = Arrow(start=(UP * GridV[8] + RIGHT * (GridH[4] - 0.03)), end=Dots[22], buff=0.05, stroke_width=3) 
+    TmpA1 = Arrow(start=(UP * GridV[8] + RIGHT * (GridH[4] - 0.03)), end=Dots[22], buff=0.05, stroke_width=3, color="#8080FF") 
     self.play(TmpG.animate.shift(RIGHT * 1.1),
               ReplacementTransform(Arrows[11], TmpA1),
               VGroup(Arrows[10], Dots[20], Dots[21]).animate.shift(RIGHT * 1.1),
@@ -275,20 +275,20 @@ class BANANA(Scene):
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
     Dots.append(Dot(point=[GridH[8], GridV[6], 0], radius=0.03)) # Useless
     Dots.append(Dot(point=[GridH[3], GridV[4], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[25], end=Dots[15], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[25], end=Dots[15], buff=0.05, stroke_width=3, color="#8080FF"))
     Dots.append(Dot(point=[GridH[2], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[26], end=Dots[20], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[26], end=Dots[20], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[8], GridV[3], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[4], GridV[3], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[27], end=Dots[28], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[27], end=Dots[28], buff=0.05, stroke_width=3, color="#FF8080"))
     self.play(FadeIn(Arrows[12]), FadeIn(Arrows[13]), FadeIn(Arrows[14]),
               FadeIn(Dots[25]), FadeIn(Dots[26]), FadeIn(Dots[27]), FadeIn(Dots[28]))
     Nodes.append(Tmp3)
     Dots.append(Dot(point=[GridH[8], GridV[10], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[5], GridV[10], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[30], end=Dots[29], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[30], end=Dots[29], buff=0.05, stroke_width=3, color="#8080FF"))
     Dots.append(Dot(point=[GridH[5], GridV[1], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[21], end=Dots[31], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[21], end=Dots[31], buff=0.05, stroke_width=3, color="#FF8080"))
     self.play(FadeIn(Arrows[15]), FadeIn(Arrows[16]), FadeIn(Dots[29]), FadeIn(Dots[30]), FadeIn(Dots[31]))
 
     GridH[6] = GridH[5] + 2  # add A
@@ -325,8 +325,8 @@ class BANANA(Scene):
     GridH[4] = GridH[4] + 1.4
     GridH[5] = GridH[5] + 1.4
     GridH[6] = GridH[6] + 1.4
-    TmpA1 = Arrow(end=(UP * GridV[1] + RIGHT * (GridH[4] - 0.03)), start=Dots[20], buff=0.05, stroke_width=3)
-    TmpA2 = Arrow(start=(UP * GridV[10] + RIGHT * (GridH[5] - 0.03)), end=Dots[29], buff=0.05, stroke_width=3)
+    TmpA1 = Arrow(end=(UP * GridV[1] + RIGHT * (GridH[4] - 0.03)), start=Dots[20], buff=0.05, stroke_width=3, color="#FF8080")
+    TmpA2 = Arrow(start=(UP * GridV[10] + RIGHT * (GridH[5] - 0.03)), end=Dots[29], buff=0.05, stroke_width=3, color="#8080FF")
     self.play(TmpG.animate.shift(RIGHT * 1.4),
               ReplacementTransform(Arrows[10], TmpA1),
               ReplacementTransform(Arrows[15], TmpA2),
@@ -336,15 +336,15 @@ class BANANA(Scene):
     self.play(Tmp3.animate.shift(DOWN * HeiRat + LEFT * CharaWid))
     Nodes.append(Tmp3)
     Dots.append(Dot(point=[GridH[5], GridV[3], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[28], end=Dots[32], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[28], end=Dots[32], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[9], GridV[4], 0], radius=0.03))
     Dots.append(Dot(point=[GridH[4], GridV[4], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[34], end=Dots[33], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[34], end=Dots[33], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[17]), FadeIn(Arrows[18]), FadeIn(Dots[32]), FadeIn(Dots[33]), FadeIn(Dots[34]))
     Dots[24] = Dot(point=[GridH[6], GridV[1], 0], radius=0.03)
-    Arrows.append(Arrow(start=Dots[31], end=Dots[24], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[31], end=Dots[24], buff=0.05, stroke_width=3, color="#FF8080"))
     Dots.append(Dot(point=[GridH[6], GridV[8], 0], radius=0.03))
-    Arrows.append(Arrow(start=Dots[35], end=Dots[23], buff=0.05, stroke_width=3))
+    Arrows.append(Arrow(start=Dots[35], end=Dots[23], buff=0.05, stroke_width=3, color="#8080FF"))
     self.play(FadeIn(Arrows[19]), FadeIn(Arrows[20]), FadeIn(Dots[24]), FadeIn(Dots[35]))
 
     self.wait(1)
@@ -958,7 +958,7 @@ class Jump (Scene):
     stroke_opacity = 0).set_fill(YELLOW, 0.3).align_to(T2_Base, RIGHT).align_to(T2_Base, DOWN))
 
     Dots = []
-    for i in range(0, 20) :
+    for i in range(0, 30) :
       Dots.append(Dot(radius=0.03))
     Dots[3].next_to(Y, DOWN, buff=0.05)
     Dots[0].next_to(Whole, UP, buff=0.05).align_to(Dots[3], RIGHT)
@@ -1024,16 +1024,20 @@ class Jump (Scene):
     MarkUp = VGroup(Dots[13], Dots[14])
     MarkUp.add(Arrow(start=Dots[13], end=Dots[14], buff=0.05, stroke_width=3))
     MarkUp.add(Arrow(start=Dots[14], end=Dots[13], buff=0.05, stroke_width=3))
-    MarkUp.add(MyText("Length", 0.5).set_color(GREEN).next_to(MarkUp, DOWN))
+    MarkUp.add(MyText("Length", 0.5).set_color(GREEN).next_to(MarkUp, DOWN, buff=0.1))
     self.play(FadeIn(MarkUp))
     self.wait(1)
     self.play(FadeOut(MarkUp))
     self.wait(1)
 
     Myy = MyText("y").set_color(GREEN).next_to(Y, LEFT).shift(RIGHT * 0.5)
-    Myt = MyText("t=y+1").set_color(GREEN).next_to(Ts, RIGHT, buff = 0.1)
+    Myt = MyText("t").set_color(GREEN).next_to(Ts, RIGHT, buff = 0.1)
+    Myt1 = MyText("t=y+1").set_color(GREEN).next_to(Ts, RIGHT, buff = 0.1)
+    Myt2 = MyText("t>y+1").set_color(GREEN).next_to(Ts, RIGHT, buff = 0.1)
     self.play(FadeIn(Myy))
     self.play(FadeIn(Myt))
+    self.wait(1)
+    self.play(ReplacementTransform(Myt, Myt1))
     self.wait(1)
 
     self.play(FadeIn(Link4))
@@ -1041,29 +1045,113 @@ class Jump (Scene):
     TmpD = Dot(radius=0.03).next_to(T, LEFT).shift(RIGHT * 0.7)
     TmpT = VGroup(Dots[7], TmpD, Arrow(start=Dots[7], end=TmpD, buff=0.05, stroke_width=3, color="#FF8080"))
     TmpCh = MyText("C", 0.5).move_to(TmpT).shift(UP * 0.2)
-    self.play(ReplacementTransform(Trans3, TmpT), ReplacementTransform(Char3, TmpCh), ReplacementTransform(Ts, T))
+    Trans4 = VGroup(Dots[9], Arrow(start=Dots[9], end=TmpD, buff=0.05, stroke_width=3, color="#FF8080"))
+    Char4 = MyText("C", 0.5).move_to(Trans4).shift(UP * 0.2)
+    self.play(FadeOut(Link4), ReplacementTransform(Myt1, Myt2), ReplacementTransform(Trans3, TmpT), ReplacementTransform(Char3, TmpCh), ReplacementTransform(Ts, T), FadeIn(VGroup(Uncle, Link3, Trans4, Char4)))
     self.wait(1)
-    
     Dots[8] = TmpD
     Char3 = TmpCh
-    Trans4 = VGroup(Dots[9], Arrow(start=Dots[9], end=Dots[8], buff=0.05, stroke_width=3, color="#FF8080"))
-    Char4 = MyText("C", 0.5).move_to(Trans4).shift(UP * 0.2)
-    self.play(FadeIn(VGroup(Uncle, Link3, Trans4, Char4)))
-    self.wait(1)
-
-
+    Trans3 = TmpT
     
-
-    self.play(FadeOut(VGroup(Trans3, Trans4, Char3, Char4)))
+    self.play(FadeOut(VGroup(Trans3, Trans4, Char3, Char4, Myt2, TmpT, Myy)))
     self.play(ReplacementTransform(T, VGroup(T1, T2)))
     self.play(T1.animate.shift(UP))
-
-
-
-    Trans5 = VGroup(Dots[5])
-
-
     self.wait(1)
+
+    Dots[17].next_to(T1, LEFT).shift(RIGHT * 0.4)
+    Dots[18].next_to(T2, LEFT).shift(RIGHT * 0.4)
+    Trans5 = VGroup(Dots[7], Dots[17], Arrow(start=Dots[7], end=Dots[17], buff=0.05, stroke_width=3, color="#FF8080"))
+    Trans7 = VGroup(Dots[9], Arrow(start=Dots[9], end=Dots[17], buff=0.05, stroke_width=3, color="#FF8080"))
+    Trans6 = VGroup(Dots[7], Dots[18], Arrow(start=Dots[7], end=Dots[18], buff=0.05, stroke_width=3, color="#FF8080"))
+    Trans8 = VGroup(Dots[9], Arrow(start=Dots[9], end=Dots[18], buff=0.05, stroke_width=3, color="#FF8080"))
+    self.play(FadeIn(VGroup(Trans5, Trans7)))
+    self.wait(1)
+    self.play(ReplacementTransform(Trans5, Trans6), ReplacementTransform(Trans7, Trans8))
+    self.wait(1)
+    self.play(FadeOut(VGroup(Trans6, Trans8)))
+    self.wait(1)
+    Trans8.add(Dots[18])
+    Char8 = MyText("C", 0.5).move_to(Trans8).shift(UP * 0.2)
+    self.play(FadeIn(VGroup(Trans8, Char8)))
+    self.wait(1)
+    Dots[17].next_to(T1, LEFT).shift(RIGHT * 0.4)
+    Trans5 = VGroup(Dots[7], Dots[17], Arrow(start=Dots[7], end=Dots[17], buff=0.05, stroke_width=3, color="#FF8080"))
+    Char5 = MyText("C", 0.5).move_to(Trans5).shift(UP * 0.2)
+    self.play(FadeIn(VGroup(Trans5, Char5)))
+    self.wait(1)
+
+    Dots[19].next_to(T1, DOWN, buff=0.05).align_to(T1, LEFT)
+    Dots[20].next_to(T1, DOWN, buff=0.05).align_to(T1, RIGHT)
+    Dots[21].next_to(T2, UP, buff=0.05).align_to(T1, LEFT)
+    Dots[22].next_to(T2, UP, buff=0.05).align_to(T1, RIGHT)
+    Ar1 = Arrow(start=Dots[19], end=Dots[20], buff=0.05, stroke_width=3)
+    Ar2 = Arrow(start=Dots[20], end=Dots[19], buff=0.05, stroke_width=3)
+    Ar3 = Arrow(start=Dots[21], end=Dots[22], buff=0.05, stroke_width=3)
+    Ar4 = Arrow(start=Dots[22], end=Dots[21], buff=0.05, stroke_width=3)
+    Myt1 = MyText("y+1", 0.75).set_color(GREEN).next_to(Ar1, DOWN, buff = 0.05)
+    Myt2 = MyText("y+2", 0.75).set_color(GREEN).next_to(Ar3, UP, buff = 0.05)
+    self.play(FadeIn(VGroup(Dots[19], Dots[20], Ar1, Ar2, Myt1)))
+    self.wait(1)
+    self.play(FadeIn(VGroup(Dots[21], Dots[22], Ar3, Ar4, Myt2)))
+    self.wait(1)
+    self.play(FadeOut(VGroup(Dots[19], Dots[20], Ar1, Ar2, Myt1, Dots[21], Dots[22], Ar3, Ar4, Myt2)))
+    self.wait(1)
+
+    Dots[23].next_to(T, RIGHT, buff=0.05).shift(UP * 0.3)
+    TranO = VGroup(Dots[23])
+    TranO.add(Arrow(start=Dots[23], end=(Dots[23].get_center() + RIGHT + UP), buff=0.05, stroke_width=3, color="#FF8080"))
+    TranO.add(Arrow(start=Dots[23], end=(Dots[23].get_center() + RIGHT * 1.41), buff=0.05, stroke_width=3, color="#FF8080"))
+    TranO.add(Arrow(start=Dots[23], end=(Dots[23].get_center() + RIGHT + DOWN), buff=0.05, stroke_width=3, color="#FF8080"))
+    TranO.add(MyText("...").next_to(TranO, RIGHT))
+    self.play(FadeIn(TranO))
+    self.wait(1)
+    TranOC = TranO.copy()
+    self.play(TranO.animate.shift(UP * 1.5), TranOC.animate.shift(DOWN))
+    self.wait(1)
+
+    Dots[29].next_to(T1, UP, buff=0.05)
+    Link7 = VGroup(Dots[29], Arrow(start=Dots[29], end=Dots[29].get_center() + UP * 0.5, buff=0.05, stroke_width=3, color="#8080FF")) 
+    Link7.add(MyText("...").next_to(Link7, RIGHT))
+    self.play(FadeIn(Link7))
+    self.wait(1)
+
+    self.play(Indicate(Whole))
+    self.play(Indicate(Link1))
+    self.play(Indicate(Fa))
+    self.wait(1)
+
+    Dots[24].next_to(New_N, UP, buff=0.05).align_to(T1, LEFT)
+    Dots[25].next_to(New_N, UP, buff=0.05).align_to(T1, RIGHT)
+    Ar5 = Arrow(start=Dots[24], end=Dots[25], buff=0.05, stroke_width=3)
+    Ar6 = Arrow(start=Dots[25], end=Dots[24], buff=0.05, stroke_width=3)
+    Myt3 = MyText("y+1+1", 0.75).set_color(GREEN).next_to(Ar5, UP, buff = 0.05)
+    Myt4 = MyText("y+2", 0.75).set_color(GREEN).next_to(Ar5, UP, buff = 0.05)
+    self.play(FadeIn(VGroup(Dots[24], Dots[25], Ar5, Ar6, Myt3)))
+    self.play(ReplacementTransform(Myt3, Myt4))
+    self.play(FadeIn(VGroup(Dots[21], Dots[22], Ar3, Ar4, Myt2)))
+    self.play(FadeIn(VGroup(Dots[19], Dots[20], Ar1, Ar2, Myt1)))
+    self.play(FadeOut(VGroup(Dots[24], Dots[25], Ar5, Ar6, Myt4, Dots[21], Dots[22], Ar3, Ar4, Myt2, Dots[19], Dots[20], Ar1, Ar2, Myt1)))
+    self.play(FadeOut(VGroup(TranO, TranOC)))
+    self.wait(1)
+    
+    TmpD = Dots[17].copy().shift(RIGHT * 2 + DOWN * 0.5)
+    TmpT = VGroup(Dots[7], TmpD, Arrow(start=Dots[7], end=TmpD, buff=0.05, stroke_width=3, color="#FF8080"))
+    TmpCh = MyText("C", 0.5).move_to(TmpT).shift(UP * 0.2)
+    self.play(FadeOut(Link7), T1.animate.shift(RIGHT * 2 + DOWN * 0.5), ReplacementTransform(Trans5, TmpT), ReplacementTransform(Char5, TmpCh))
+    self.wait(1)
+    Dots[8] = TmpD
+    Char5 = TmpCh
+    Trans5 = TmpT
+
+    Dots[26].next_to(T2, UP, buff=0.05).shift(RIGHT * 0.8)
+    Dots[27].next_to(New_N, UP, buff=0.05).align_to(Dots[26], RIGHT)
+    Dots[28].next_to(T1, DOWN, buff=0.05)
+    Link5 = VGroup(Dots[26], Dots[28], Arrow(start=Dots[26], end=Dots[28], buff=0.05, stroke_width=3, color="#8080FF")) 
+    Link6 = VGroup(Dots[27], Arrow(start=Dots[27], end=Dots[28], buff=0.05, stroke_width=3, color="#8080FF"))
+    self.play(FadeIn(VGroup(Link5, Link6)))
+    self.wait(1)
+
+    # self.wait(1)
 
 # manimgl SAM.py EC -o -c "BLACK"
 # manimgl SAM.py EC2 -o -c "BLACK"
@@ -1074,3 +1162,4 @@ class Jump (Scene):
 # manimgl SAM.py Transition -o -c "BLACK" --frame_rate 30
 # manimgl SAM.py ComplAdd -o -c "BLACK" --frame_rate 30
 # manimgl SAM.py Trian -o -c "BLACK" --frame_rate 30
+# manimgl SAM.py Jump -o -c "BLACK" --frame_rate 10
