@@ -14,11 +14,7 @@ One node of an SAM representes an EC. There are two kinds of edges, Links and Tr
 
 Nodes with Links constructed a tree, Link-Tree. Every Node's EndPos is its father's EndPos's subset. The root's EC only contains empty string, which occurs everywhere. The definition of Link means that when the EC A's string occurs, A's father's string occurs, too. So all of A's father's strings are the suffix of all A's strings.
 
----
-
 Nodes with Transitions constructed a DAG. Each Transition has a character as the value. No more than one Transition with the same value could begin from the same node. If there is a Transition from A to B, with the value c, every string from A add a character c in the end can be found in B.
-
----
 
 ## Construction
 
@@ -32,7 +28,9 @@ We divide the triangle, and except the tip, there are lots of trapezoidals. Let 
 
 Note that current whole string's node is X. When adding a character C, a new node should be added. We define the new node is N. From X, jump along Links, if there is no Transition with the value C, create a new Transition from current node to N, if there is already a Transition with value C, note the node as Y, the node that Y's Transition C pointing at is T.
 
-Because every node have series of strings, we define the length of a node is the length of the longest string in the node. So the length of Y is the length of X plus 1. Define that Y's length is $y$, T's length is $t$. If $t = y + 1$, we can let N's Link point at T.
+---
+
+Because every node have series of strings, we define the length of a node is the length of the longest string in the node. So the length of N is the length of X plus 1. Define that Y's length is $y$, T's length is $t$. If $t = y + 1$, we can let N's Link point at T.
 
 If not, split T as T1 and T2. So the Transitions used to point at T should point at T1 or T2. Let strings longer than $y + 1$ belongs to T2, so the former Transitions' beginings whose length is longer than $y$ should point at T2. The rest of those strings belongs to T1, and the rest of those former Transitions should point at T1. So the length of T1 is $y + 1$, and the length of the shortest string in T2 is $y + 2$. Former Transitions that begings from T, should be copied, both T1 and T2 should have these Transitions. T1's Link is former T's Link.
 
