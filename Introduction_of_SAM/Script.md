@@ -38,7 +38,7 @@ Back to the triangle constructed with new suffixes while adding a new character.
 
 We divide the triangle, and the top of the triangle can be devided as existing SAM nodes.
 
-However, sometimes only a part of the existing node can match with the devided triangle, which means that the Endpos of the strings of the node are no longer the same. The matched part has a new occuring position, and the unmathed part's Endpos doesn't change. So as the defination of a Node: "Every string in one Node has the same Endpos", the Node should split.
+However, sometimes only a part of the existing node can match with the devided triangle, which means that the Endpos of the strings of the node are no longer the same. The matched part has a new occuring position, and the unmatched part's Endpos doesn't change. So as the defination of a Node: "Every string in one Node has the same Endpos", the Node should split.
 
 ## Practice
 
