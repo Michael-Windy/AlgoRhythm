@@ -1,5 +1,3 @@
-[TOC]
-
 # Math in Photography
 
 ## Simplified Optical Model of a Camera
@@ -10,7 +8,7 @@ Because I'm not majoring in optics or physics. So here we'll only talk about the
 
 The use of the lens is to image the objects to the sensor. Nowadays camera lenses are very complicated. That is because the spherical lens can't focus precisely. This is called spherical aberration. Even if there's a non-spherical lens combination that could avoid spherical aberration, light beams with different frequencies have different refractive indices. So it's very difficult to build an ideal lens.
 
-Imagine we have an ideal lens. The thickness of the lens can be ignored and the radius of the lens is infinity. Light beams that are perpendicular to the lens would focus on the focus. Light beams that point straight at the optical center wouldn't change their directions. Light beams from a point of light would focus on another point at the opposite side of the lens.
+Imagine we have an ideal lens. The thickness of the lens can be ignored and the radius of the lens is infinity. Light beams that are perpendicular to the lens would focus on the focus. Light beams that point straight at the optical center wouldn't change their directions. Light beams from a point of light would focus on another point at the opposite side of the lens. 
 
 ### Sensor
 
@@ -248,7 +246,12 @@ $$
 = \frac{2CNdf(2d - f)}{(f^4 - C^2N^2(d - f)^2)^2} \left ( -f^4 - C^2N^2(d - f)^2 \right ) < 0\\
 $$
 
-So the DOF is positive related with $C$, is positive related with $N$, is positive related with $d$, is negative related with $f$.
+So the DOF is positive related with $C$, $N$, $d$, and negative related with $f$.
 
 ## The Amount of Light
 
+To improve the signal-to-noise ratio, we hope there would be more light enter the sensor. It's the aperture, the size of the sensor and the time of exposure that affetcs the amount of light.
+
+Introducing the phenomenon of vignetting. The corner of the frame looks darker than the center of the frame. This might be caused by many reasons, one of the reason is the sensor is flat but the light is average in every angle. So in the corner of the frame, the same length would share the smaller angle.
+
+But here we put the vignetting aside, only considering the total amount of light hitting on the sensor.
